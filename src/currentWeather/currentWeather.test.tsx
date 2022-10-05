@@ -13,7 +13,7 @@ describe("<CurrentWeather />", () => {
         temp={93}
         weatherObject={{
           conditions: "Partly Cloudy",
-          iconPath: partlyCloudyIcon,
+          icon: partlyCloudyIcon,
           windSpeed: 12,
         }}
       />
@@ -36,7 +36,7 @@ describe("<CurrentWeather />", () => {
         temp={34}
         weatherObject={{
           conditions: "Thunderstorms",
-          iconPath: thunderstormsIcon,
+          icon: thunderstormsIcon,
           windSpeed: 4,
         }}
       />
@@ -59,7 +59,7 @@ describe("<CurrentWeather />", () => {
         temp={93}
         weatherObject={{
           conditions: "Rain",
-          iconPath: rainIcon,
+          icon: rainIcon,
           windSpeed: 12,
         }}
       />
@@ -78,7 +78,7 @@ describe("<CurrentWeather />", () => {
         temp={93}
         weatherObject={{
           conditions: "Drizzle",
-          iconPath: drizzleIcon,
+          icon: drizzleIcon,
           windSpeed: 12,
         }}
       />

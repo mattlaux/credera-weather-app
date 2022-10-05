@@ -2,7 +2,7 @@ import "./currentWeather.css";
 
 type WeatherObject = {
   conditions: string;
-  iconPath: string;
+  icon: string;
   windSpeed: number;
 };
 
@@ -17,7 +17,7 @@ const CurrentWeather = (props: CurrentWeatherProps): JSX.Element => {
       <div className="d-flex align-items-center">
         <p className="mb-0">{props.temp}°</p>
         <img
-          src={props.weatherObject.iconPath}
+          src={props.weatherObject.icon}
           alt={props.weatherObject.conditions}
           height={39.27}
           width={44.18}
