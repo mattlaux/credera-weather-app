@@ -1,0 +1,13 @@
+.currentWeatherWidget p,
+em {
+  color: #65aed5;
+}
+
+.currentWeatherWidget p {
+  font-size: 3rem;
+}
+
+.currentWeatherWidget em {
+  font-size: 0.875rem;
+  font-weight: lighter;
+}
