@@ -1,4 +1,4 @@
-import locationPin from "../media/locationPin.png";
+import locationPin from "../../media/locationPin.png";
 import "./locationAndDate.css";
 
 type Props = {
