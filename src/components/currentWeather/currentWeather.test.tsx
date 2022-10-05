@@ -1,10 +1,10 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import CurrentWeather from "./currentWeather";
-import partlyCloudyIcon from "../media/partlyCloudy.png";
-import thunderstormsIcon from "../media/thunderstorms.png";
-import rainIcon from "../media/rain.png";
-import drizzleIcon from "../media/drizzle.png";
+import partlyCloudyIcon from "../../media/partlyCloudy.png";
+import thunderstormsIcon from "../../media/thunderstorms.png";
+import rainIcon from "../../media/rain.png";
+import drizzleIcon from "../../media/drizzle.png";
 
 describe("<CurrentWeather />", () => {
   test("renders temp, partly cloudy condition icon, weather condition, and wind speed", () => {
