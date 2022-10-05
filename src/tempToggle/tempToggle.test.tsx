@@ -4,7 +4,7 @@ import TempToggle from "./tempToggle";
 
 describe("<TempToggle />", () => {
   test("renders toggle slider with text", () => {
-    render(<TempToggle toggleTemp={jest.fn} />);
+    render(<TempToggle handleToggleTemp={jest.fn} />);
 
     const toggleButton = screen.getByRole("checkbox");
     const celsiusText = screen.getByText(/c°/i);
