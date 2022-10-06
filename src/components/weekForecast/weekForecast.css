@@ -1,23 +1,21 @@
 .weekForecast div:first-child .dayForecast {
-  border-top: none !important;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
 }
 
 .weekForecast div:last-child .dayForecast {
-  border-right: none !important;
-}
-
-.weekForecast {
-  border: 1px solid rgb(222, 226, 230);
-  border-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
-  .weekForecast {
-    max-width: 670px;
-    border-radius: 0;
+  .weekForecast div:first-child .dayForecast {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
-  .weekForecast .singleDayForecast {
-    border-radius: 0;
+  .weekForecast div:last-child .dayForecast {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
   }
 }
