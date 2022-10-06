@@ -2,9 +2,9 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import LocationAndDate from "./locationAndDate";
 
-describe("<CurrentWeather />", () => {
+describe("<LocationAndDate />", () => {
   test("renders city with location pin and date", () => {
-    Date.now = jest.fn(() => 1665000432276);
+    jest.useFakeTimers().setSystemTime(new Date(1665000432276));
 
     render(<LocationAndDate city="Dallas, TX" />);
 
