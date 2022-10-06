@@ -1,6 +1,6 @@
 .currentWeatherWidget h2,
 em {
-  color: #65aed5;
+  color: white;
 }
 
 .currentWeatherWidget h2 {
@@ -9,5 +9,11 @@ em {
 
 .currentWeatherWidget em {
   font-size: 0.875rem;
-  font-weight: lighter;
+}
+
+@media only screen and (min-width: 768px) {
+  .currentWeatherWidget h2,
+  em {
+    color: #65aed5;
+  }
 }

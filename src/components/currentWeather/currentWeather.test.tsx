@@ -11,6 +11,7 @@ describe("<CurrentWeather />", () => {
     render(
       <CurrentWeather
         temp={93}
+        tempIsCelsius={false}
         weatherObject={{
           conditions: "Partly Cloudy",
           icon: partlyCloudyIcon,
@@ -30,10 +31,11 @@ describe("<CurrentWeather />", () => {
     expect(windSpeed).toBeInTheDocument();
   });
 
-  test("renders thunderstorms icon", () => {
+  test("renders thunderstorms icon with a temp of 2 degrees celsius", () => {
     render(
       <CurrentWeather
         temp={34}
+        tempIsCelsius={true}
         weatherObject={{
           conditions: "Thunderstorms",
           icon: thunderstormsIcon,
@@ -42,7 +44,7 @@ describe("<CurrentWeather />", () => {
       />
     );
 
-    const temp = screen.getByText(/34°/i);
+    const temp = screen.getByText(/2°/i);
     const weatherIcon = screen.getByAltText(/thunderstorms/i);
     const weatherCondition = screen.getByText(/thunderstorms/i);
     const windSpeed = screen.getByText(/wind: 4mph/i);
@@ -53,10 +55,11 @@ describe("<CurrentWeather />", () => {
     expect(windSpeed).toBeInTheDocument();
   });
 
-  test("renders rain icon", () => {
+  test("renders rain icon with a temp of -17 degrees celsius", () => {
     render(
       <CurrentWeather
-        temp={93}
+        temp={0}
+        tempIsCelsius={true}
         weatherObject={{
           conditions: "Rain",
           icon: rainIcon,
@@ -65,9 +68,11 @@ describe("<CurrentWeather />", () => {
       />
     );
 
+    const temp = screen.getByText(/-17°/i);
     const weatherIcon = screen.getByAltText(/rain/i);
     const weatherCondition = screen.getByText(/rain/i);
 
+    expect(temp).toBeInTheDocument();
     expect(weatherIcon).toBeInTheDocument();
     expect(weatherCondition).toBeInTheDocument();
   });
@@ -75,7 +80,8 @@ describe("<CurrentWeather />", () => {
   test("renders drizzle icon", () => {
     render(
       <CurrentWeather
-        temp={93}
+        temp={43}
+        tempIsCelsius={false}
         weatherObject={{
           conditions: "Drizzle",
           icon: drizzleIcon,
@@ -84,9 +90,11 @@ describe("<CurrentWeather />", () => {
       />
     );
 
+    const temp = screen.getByText(/43°/i);
     const weatherIcon = screen.getByAltText(/drizzle/i);
     const weatherCondition = screen.getByText(/drizzle/i);
 
+    expect(temp).toBeInTheDocument();
     expect(weatherIcon).toBeInTheDocument();
     expect(weatherCondition).toBeInTheDocument();
   });
