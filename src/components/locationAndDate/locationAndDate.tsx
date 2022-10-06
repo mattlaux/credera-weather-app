@@ -5,7 +5,7 @@ type Props = {
   city: string;
 };
 
-const LocationAndDate = (props: Props) => {
+const LocationAndDate = (props: Props): JSX.Element => {
   const date = new Date().toLocaleDateString("default", {
     weekday: "long",
     year: "numeric",
