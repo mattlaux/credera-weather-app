@@ -8,6 +8,7 @@
 
 .dayForecast {
   border-top: 1px solid rgb(222, 226, 230);
+  height: 50px;
 }
 
 @media only screen and (min-width: 768px) {

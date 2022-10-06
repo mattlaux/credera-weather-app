@@ -19,7 +19,9 @@ const LocationAndDate = (props: Props): JSX.Element => {
         <img src={locationPin} alt="Location Pin" height={16} width={12} />
         <h1 className="fst-italic fw-light mb-0 ms-3">{props.city}</h1>
       </div>
-      <time>{date}</time>
+      <div className="text-center">
+        <time>{date}</time>
+      </div>
     </section>
   );
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import TempToggle from "./tempToggle";
 
 describe("<TempToggle />", () => {
@@ -12,5 +13,19 @@ describe("<TempToggle />", () => {
     expect(toggleButton).toBeInTheDocument();
     expect(celsiusText).toBeInTheDocument();
     expect(fahrenheitText).toBeInTheDocument();
+  });
+
+  test("clicking toggle slider calls handleToggleTemp prop", () => {
+    const props = {
+      handleToggleTemp: jest.fn(),
+    };
+    render(<TempToggle {...props} />);
+
+    expect(props.handleToggleTemp).not.toHaveBeenCalled();
+    const toggleButton = screen.getByRole("checkbox");
+    expect(toggleButton).not.toBeChecked();
+    userEvent.click(toggleButton);
+    expect(toggleButton).toBeChecked();
+    expect(props.handleToggleTemp).toHaveBeenCalled();
   });
 });

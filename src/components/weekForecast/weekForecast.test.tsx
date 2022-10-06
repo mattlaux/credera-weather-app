@@ -5,7 +5,7 @@ import thunderstormsIcon from "../../media/thunderstorms.png";
 import rainIcon from "../../media/rain.png";
 import WeekForecast from "./weekForecast";
 
-describe("<DayForecast />", () => {
+describe("<WeekForecast />", () => {
   test("renders correct day, icon, and temp", () => {
     render(
       <WeekForecast
@@ -29,6 +29,7 @@ describe("<DayForecast />", () => {
             condition: "Rain",
           },
         ]}
+        tempIsCelsius={false}
       />
     );
 
@@ -52,5 +53,42 @@ describe("<DayForecast />", () => {
     expect(friday).toBeInTheDocument();
     expect(friTemp).toBeInTheDocument();
     expect(friIcon).toBeInTheDocument();
+  });
+
+  test("renders correct Celsius temperatures", () => {
+    render(
+      <WeekForecast
+        dailyForecasts={[
+          {
+            temp: 93,
+            icon: partlyCloudyIcon,
+            date: 1665014400,
+            condition: "Partly Cloudy",
+          },
+          {
+            temp: 32,
+            icon: thunderstormsIcon,
+            date: 1665114400,
+            condition: "Thunderstorms",
+          },
+          {
+            temp: 65,
+            icon: rainIcon,
+            date: 1665129400,
+            condition: "Rain",
+          },
+        ]}
+        tempIsCelsius={true}
+      />
+    );
+
+    const wedTemp = screen.getByText(/34°/i);
+    expect(wedTemp).toBeInTheDocument();
+
+    const thuTemp = screen.getByText(/0°/i);
+    expect(thuTemp).toBeInTheDocument();
+
+    const friTemp = screen.getByText(/19°/i);
+    expect(friTemp).toBeInTheDocument();
   });
 });

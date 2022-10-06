@@ -1,4 +1,5 @@
 import "./dayForecast.css";
+import fahrenheitToCelsius from "../../functions/fahrenheitToCelsius";
 
 type DailyForecast = {
   temp: number;
@@ -9,6 +10,7 @@ type DailyForecast = {
 
 type DayForecastProps = {
   forecast: DailyForecast;
+  tempIsCelsius: boolean;
 };
 
 const DayForecast = (props: DayForecastProps): JSX.Element => {
@@ -16,14 +18,19 @@ const DayForecast = (props: DayForecastProps): JSX.Element => {
   const date = new Date(props.forecast.date * 1000);
   const day = weekdays[date.getDay()];
   return (
-    <section className="dayForecast d-flex flex-md-column align-items-center justify-content-around p-1">
-      <h3 className="fw-bold mb-0 mb-md-3">{day}</h3>
+    <section className="dayForecast d-flex flex-md-column align-items-center justify-content-around p-1 bg-white">
+      <h3 className="fw-bold mb-0 mb-md-2 mt-md-2">{day}</h3>
       <img
         src={props.forecast.icon}
         alt={props.forecast.condition}
-        className="mb-md-3"
+        className="mb-md-2"
       />
-      <p className="mb-0">{props.forecast.temp}°</p>
+      <p>
+        {props.tempIsCelsius
+          ? fahrenheitToCelsius(props.forecast.temp)
+          : props.forecast.temp}
+        °
+      </p>
     </section>
   );
 };
