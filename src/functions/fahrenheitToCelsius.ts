@@ -3,7 +3,7 @@
  * @param fahrenheitTemp - Temperature in degrees Fahrenheit
  * @returns Temperature in degrees Celsius
  */
-const fahrenheitToCelsius = (fahrenheitTemp: number) => {
+const fahrenheitToCelsius = (fahrenheitTemp: number): number => {
   return Math.ceil((fahrenheitTemp - 32) * (5 / 9));
 };
 

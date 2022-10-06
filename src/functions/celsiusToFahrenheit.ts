@@ -3,7 +3,7 @@
  * @param celsiusTemp - Temperature in degrees Celsius
  * @returns Temperature in degreeds Fahrenheit
  */
-const celsiusToFahrenheit = (celsiusTemp: number) => {
+const celsiusToFahrenheit = (celsiusTemp: number): number => {
   return Math.floor(celsiusTemp * (9 / 5) + 32);
 };
 
