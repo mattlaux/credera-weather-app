@@ -16,6 +16,7 @@ describe("<DayForecast />", () => {
           date: 1665014400,
           condition: "Partly Cloudy",
         }}
+        tempIsCelsius={false}
       />
     );
 
@@ -28,7 +29,7 @@ describe("<DayForecast />", () => {
     expect(weatherIcon).toBeInTheDocument();
   });
 
-  test("renders thunderstorms icon", () => {
+  test("renders thunderstorms icon with a temp of 0 degrees celsius", () => {
     render(
       <DayForecast
         forecast={{
@@ -37,30 +38,34 @@ describe("<DayForecast />", () => {
           date: 1665129400,
           condition: "Thunderstorms",
         }}
+        tempIsCelsius={true}
       />
     );
 
-    const temp = screen.getByText(/32°/i);
+    const temp = screen.getByText(/0°/i);
     const weatherIcon = screen.getByAltText(/thunderstorms/i);
 
     expect(temp).toBeInTheDocument();
     expect(weatherIcon).toBeInTheDocument();
   });
 
-  test("renders rain icon", () => {
+  test("renders rain icon with a temp of -55 degrees Celsius", () => {
     render(
       <DayForecast
         forecast={{
-          temp: 65,
+          temp: -67,
           icon: rainIcon,
           date: 1665129400,
           condition: "Rain",
         }}
+        tempIsCelsius={true}
       />
     );
 
+    const temp = screen.getByText(/-55°/i);
     const weatherIcon = screen.getByAltText(/rain/i);
 
+    expect(temp).toBeInTheDocument();
     expect(weatherIcon).toBeInTheDocument();
   });
 
@@ -73,11 +78,14 @@ describe("<DayForecast />", () => {
           date: 1665129400,
           condition: "Drizzle",
         }}
+        tempIsCelsius={false}
       />
     );
 
+    const temp = screen.getByText(/65°/i);
     const weatherIcon = screen.getByAltText(/drizzle/i);
 
+    expect(temp).toBeInTheDocument();
     expect(weatherIcon).toBeInTheDocument();
   });
 });
