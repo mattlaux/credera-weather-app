@@ -15,7 +15,7 @@ const CurrentWeather = (props: CurrentWeatherProps): JSX.Element => {
   return (
     <section className="currentWeatherWidget d-flex flex-column flex-md-row align-items-center justify-content-center">
       <div className="d-flex align-items-center">
-        <p className="mb-0">{props.temp}°</p>
+        <h2 className="mb-0">{props.temp}°</h2>
         <img
           src={props.weatherObject.icon}
           alt={props.weatherObject.conditions}

@@ -1,9 +1,9 @@
-.currentWeatherWidget p,
+.currentWeatherWidget h2,
 em {
   color: #65aed5;
 }
 
-.currentWeatherWidget p {
+.currentWeatherWidget h2 {
   font-size: 3rem;
 }
 
