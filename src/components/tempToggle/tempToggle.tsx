@@ -1,10 +1,10 @@
 import "./tempToggle.css";
 
-interface Props {
+type TempToggleProps = {
   handleToggleTemp: () => void;
-}
+};
 
-const TempToggle = (props: Props): JSX.Element => {
+const TempToggle = (props: TempToggleProps): JSX.Element => {
   return (
     <label className="switch">
       <input type="checkbox" onClick={props.handleToggleTemp} />
