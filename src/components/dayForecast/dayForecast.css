@@ -1,0 +1,19 @@
+.dayForecast h3 {
+  font-size: 0.875rem;
+}
+
+.dayForecast p {
+  font-size: 1.5rem;
+}
+
+.dayForecast {
+  border-top: 1px solid rgb(222, 226, 230);
+}
+
+@media only screen and (min-width: 768px) {
+  .dayForecast {
+    border-top: none;
+    border-right: 1px solid rgb(222, 226, 230);
+    height: 142px;
+  }
+}
