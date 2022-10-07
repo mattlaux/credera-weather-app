@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import parseForecastData from "./functions/parseForecastData";
 import failIcon from "./media/failIcon.svg";
+import SearchBar from "./components/searchBar/searchBar";
 
 type ForecastObject = {
   temp: number;
@@ -29,12 +30,13 @@ function App() {
   ]);
   const [status, setStatus] = useState("Loading");
   const [error, setError] = useState("");
+  const [cityName, setCityName] = useState("dallas");
 
   useEffect(() => {
     const fetch5DayForecast = async () => {
       try {
         const res = await fetch(
-          "https://api.openweathermap.org/data/2.5/forecast?q=dallas&appid=60a23522e4542e1b670c3d203b56d9ae&units=imperial"
+          `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=60a23522e4542e1b670c3d203b56d9ae&units=imperial`
         );
         if (!res.ok) {
           throw new Error("Failed to retrieve weather forecast data from API");
@@ -70,20 +72,26 @@ function App() {
     };
     fetch5DayForecast();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cityName]);
 
   const handleToggleTemp = () => {
     setTempIsCelsius(!tempIsCelsius);
+  };
+
+  const handleInputSubmit = (userInput: string) => {
+    setCityName(userInput);
   };
 
   return (
     <Container className="mainBackground" fluid>
       <Row className="d-flex flex-column flex-md-row align-content-center vh-100">
         <Col xs={10} md={8} className="mx-auto">
-          <LocationAndDate city="Dallas, TX" />
+          <SearchBar handleInputSubmit={handleInputSubmit} />
+          <LocationAndDate city={cityName} />
           <CityContainer
             tempIsCelsius={tempIsCelsius}
             handleToggleTemp={handleToggleTemp}
+            cityName={cityName}
           />
           {status === "Loading" && <p>Loading Weekly Forecast</p>}
           {status === "Error" && (

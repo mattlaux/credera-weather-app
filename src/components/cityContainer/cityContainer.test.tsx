@@ -6,14 +6,26 @@ import networkErrorHandlers from "../../../mocks/networkErrorHandlers";
 
 describe("<CityContainer />", () => {
   test("renders temperature toggle button", () => {
-    render(<CityContainer tempIsCelsius={false} handleToggleTemp={jest.fn} />);
+    render(
+      <CityContainer
+        tempIsCelsius={false}
+        handleToggleTemp={jest.fn}
+        cityName="dallas"
+      />
+    );
 
     const toggleTempButton = screen.getByRole("checkbox");
     expect(toggleTempButton).toBeInTheDocument();
   });
 
   test("renders loading state then current weather information", async () => {
-    render(<CityContainer tempIsCelsius={false} handleToggleTemp={jest.fn} />);
+    render(
+      <CityContainer
+        tempIsCelsius={false}
+        handleToggleTemp={jest.fn}
+        cityName="dallas"
+      />
+    );
 
     const loadingText = screen.getByText("Loading Weather Data");
     expect(loadingText).toBeInTheDocument();
@@ -30,7 +42,13 @@ describe("<CityContainer />", () => {
 
   test("renders error state when request fails", async () => {
     server.use(...networkErrorHandlers);
-    render(<CityContainer tempIsCelsius={false} handleToggleTemp={jest.fn} />);
+    render(
+      <CityContainer
+        tempIsCelsius={false}
+        handleToggleTemp={jest.fn}
+        cityName="dallas"
+      />
+    );
 
     const loadingText = screen.getByText("Loading Weather Data");
     expect(loadingText).toBeInTheDocument();

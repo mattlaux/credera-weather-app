@@ -7,11 +7,19 @@
 }
 
 .mainBackground .location {
-  margin-top: 6rem;
+  margin-top: 2rem;
+}
+
+.mainBackground .searchBar {
+  margin-top: 5rem;
 }
 
 @media only screen and (min-width: 768px) {
   .mainBackground .location {
+    margin-top: 0;
+  }
+
+  .mainBackground .searchBar {
     margin-top: 0;
   }
 }
