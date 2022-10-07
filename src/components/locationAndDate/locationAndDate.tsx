@@ -17,7 +17,9 @@ const LocationAndDate = (props: Props): JSX.Element => {
     <section className="location text-white">
       <div className="d-flex justify-content-center align-items-center">
         <img src={locationPin} alt="Location Pin" height={16} width={12} />
-        <h1 className="fst-italic fw-light mb-0 ms-3">{props.city}</h1>
+        <h1 className="fst-italic fw-light mb-0 ms-3">
+          {props.city.charAt(0).toUpperCase() + props.city.slice(1)}
+        </h1>
       </div>
       <div className="text-center">
         <time>{date}</time>
