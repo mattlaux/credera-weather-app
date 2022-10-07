@@ -12,7 +12,7 @@ describe("<App />", () => {
     const loadingText = screen.getByText(/loading weekly forecast/i);
     expect(loadingText).toBeInTheDocument();
 
-    const locationAndDate = await screen.findByText(/dallas, tx/i);
+    const locationAndDate = await screen.findByText(/dallas/i);
     const currentWeather = await screen.findByText(/wind:/i);
     const tempToggle = await screen.findByRole("checkbox");
     const weekForecast = await screen.findByText(/fri/i);
@@ -47,5 +47,30 @@ describe("<App />", () => {
       /Failed to retrieve weather forecast data from API/i
     );
     expect(errorText).toBeInTheDocument();
+  });
+
+  test("searching denver returns appropriate data", async () => {
+    render(<App />);
+
+    const searchBar = screen.getByLabelText(/please enter a city name below/i);
+    const submitButton = screen.getByRole("button", {
+      name: /get weather data/i,
+    });
+
+    let cityName = await screen.findByText(/Dallas/i);
+    let currentTemp = await screen.findByText(/88/i);
+    let forecastTemp = await screen.findByText(/89/i);
+    expect(cityName).toBeInTheDocument();
+    expect(currentTemp).toBeInTheDocument();
+    expect(forecastTemp).toBeInTheDocument();
+
+    userEvent.type(searchBar, "denver");
+    userEvent.click(submitButton);
+
+    cityName = await screen.findByText(/denver/i);
+    forecastTemp = await screen.findByText(/61/i);
+    expect(cityName).toBeInTheDocument();
+    expect(currentTemp).toBeInTheDocument();
+    expect(forecastTemp).toBeInTheDocument();
   });
 });
