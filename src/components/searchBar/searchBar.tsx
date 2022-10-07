@@ -32,39 +32,41 @@ const SearchBar = (props: SearchBarProps) => {
   };
 
   return (
-    <Form
-      onSubmit={handleOnSubmit}
-      className="searchBar mx-auto text-center mt-md-3 mb-md-3"
-      id="searchBar"
-    >
-      <Form.Group controlId="cityInput">
-        <Form.Label className="text-white">
-          Please enter a city name below
-        </Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="City Name"
-          aria-describedby="inputHelp"
-          value={input}
-          onChange={(e) => {
-            const sanitizedInput = domPurify.sanitize(e.target.value);
-            validateInput(sanitizedInput);
-            setInput(sanitizedInput);
-          }}
-        />
-        <Form.Text className="text-light">
-          Input can only consist of letters, periods, and dashes
-        </Form.Text>
-      </Form.Group>
-      <Button
-        variant="light"
-        type="submit"
-        className="mt-3"
-        disabled={!inputValid}
+    <header>
+      <Form
+        onSubmit={handleOnSubmit}
+        className="searchBar mx-auto text-center mt-md-3 mb-md-3"
+        id="searchBar"
       >
-        Get Weather Data
-      </Button>
-    </Form>
+        <Form.Group controlId="cityInput">
+          <Form.Label className="text-white">
+            Please enter a city name below
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="City Name"
+            aria-describedby="inputHelp"
+            value={input}
+            onChange={(e) => {
+              const sanitizedInput = domPurify.sanitize(e.target.value);
+              validateInput(sanitizedInput);
+              setInput(sanitizedInput);
+            }}
+          />
+          <Form.Text className="text-light">
+            Input can only consist of letters, periods, and dashes
+          </Form.Text>
+        </Form.Group>
+        <Button
+          variant="light"
+          type="submit"
+          className="mt-3"
+          disabled={!inputValid}
+        >
+          Get Weather Data
+        </Button>
+      </Form>
+    </header>
   );
 };
 
