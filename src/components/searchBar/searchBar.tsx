@@ -17,7 +17,7 @@ const SearchBar = (props: SearchBarProps) => {
     if (
       validator.isEmpty(input) ||
       !validator.isLength(input, { min: 1, max: 50 }) ||
-      !validator.isAlpha(input)
+      !validator.matches(input, /^[a-zA-Z .-]+$/i)
     ) {
       setInputValid(false);
     } else {
@@ -53,7 +53,7 @@ const SearchBar = (props: SearchBarProps) => {
           }}
         />
         <Form.Text className="text-light">
-          Input can only consist of letters
+          Input can only consist of letters, periods, and dashes
         </Form.Text>
       </Form.Group>
       <Button
