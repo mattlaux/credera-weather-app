@@ -1,50 +1,76 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import CityContainer from "./components/cityContainer/cityContainer";
 import WeekForecast from "./components/weekForecast/weekForecast";
 import partlyCloudyIcon from "./media/partlyCloudy.png";
-import thunderstormsIcon from "./media/thunderstorms.png";
-import rainIcon from "./media/rain.png";
-import drizzleIcon from "./media/drizzle.png";
 import LocationAndDate from "./components/locationAndDate/locationAndDate";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import parseForecastData from "./functions/parseForecastData";
+import failIcon from "./media/failIcon.svg";
+
+type ForecastObject = {
+  temp: number;
+  icon: string;
+  date: number;
+  condition: string;
+};
 
 function App() {
   const [tempIsCelsius, setTempIsCelsius] = useState(false);
-  const [dailyForecasts, setDailyForecast] = useState([
+  const [dailyForecasts, setDailyForecasts] = useState([
     {
       temp: 45,
       icon: partlyCloudyIcon,
       date: 1665014400,
       condition: "Partly Cloudy",
     },
-    {
-      temp: 78,
-      icon: rainIcon,
-      date: 1665114400,
-      condition: "Rain",
-    },
-    {
-      temp: 65,
-      icon: thunderstormsIcon,
-      date: 1665129400,
-      condition: "Thunderstorms",
-    },
-    {
-      temp: 32,
-      icon: drizzleIcon,
-      date: 1665283400,
-      condition: "Drizzle",
-    },
-    {
-      temp: -63,
-      icon: rainIcon,
-      date: 1665320400,
-      condition: "Rain",
-    },
   ]);
+  const [status, setStatus] = useState("Loading");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetch5DayForecast = async () => {
+      try {
+        const res = await fetch(
+          "https://api.openweathermap.org/data/2.5/forecast?q=dallas&appid=60a23522e4542e1b670c3d203b56d9ae&units=imperial"
+        );
+        if (!res.ok) {
+          throw new Error("Failed to retrieve weather forecast data from API");
+        }
+        const data = await res.json();
+        const forecastsArray: ForecastObject[] = [];
+        for (let i = 6; i <= 38; i += 8) {
+          const forecast = data.list[i];
+          const temp = Math.floor(forecast.main.temp);
+          const weatherId = forecast.weather[0].id;
+          const date = forecast.dt;
+          forecastsArray.push(parseForecastData(temp, weatherId, date));
+        }
+        setDailyForecasts(forecastsArray);
+        setError("");
+        setStatus("Successful");
+      } catch (err) {
+        setStatus("Error");
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Failed to retrieve weather forecast data from API");
+        }
+        setDailyForecasts([
+          {
+            temp: NaN,
+            icon: failIcon,
+            date: NaN,
+            condition: "Failed to load data",
+          },
+        ]);
+      }
+    };
+    fetch5DayForecast();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleToggleTemp = () => {
     setTempIsCelsius(!tempIsCelsius);
@@ -59,10 +85,21 @@ function App() {
             tempIsCelsius={tempIsCelsius}
             handleToggleTemp={handleToggleTemp}
           />
-          <WeekForecast
-            dailyForecasts={dailyForecasts}
-            tempIsCelsius={tempIsCelsius}
-          />
+          {status === "Loading" && <p>Loading Weekly Forecast</p>}
+          {status === "Error" && (
+            <WeekForecast
+              dailyForecasts={dailyForecasts}
+              tempIsCelsius={tempIsCelsius}
+              fetchDataError={error}
+            />
+          )}
+          {status === "Successful" && (
+            <WeekForecast
+              dailyForecasts={dailyForecasts}
+              tempIsCelsius={tempIsCelsius}
+              fetchDataError={error}
+            />
+          )}
         </Col>
       </Row>
     </Container>

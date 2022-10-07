@@ -12,12 +12,17 @@ type ForecastObject = {
 type WeekForecastProps = {
   dailyForecasts: ForecastObject[];
   tempIsCelsius: boolean;
+  fetchDataError: string;
 };
 
 const WeekForecast = (props: WeekForecastProps) => {
   const dayForecasts = props.dailyForecasts.map((dayForecast) => (
     <Col key={dayForecast.date}>
-      <DayForecast forecast={dayForecast} tempIsCelsius={props.tempIsCelsius} />
+      <DayForecast
+        forecast={dayForecast}
+        tempIsCelsius={props.tempIsCelsius}
+        fetchDataError={props.fetchDataError}
+      />
     </Col>
   ));
 

@@ -5,6 +5,7 @@ import thunderstormsIcon from "../../media/thunderstorms.png";
 import rainIcon from "../../media/rain.png";
 import drizzleIcon from "../../media/drizzle.png";
 import DayForecast from "./dayForecast";
+import failIcon from "../../media/failIcon.svg";
 
 describe("<DayForecast />", () => {
   test("renders correct day, icon, and temp", () => {
@@ -17,6 +18,7 @@ describe("<DayForecast />", () => {
           condition: "Partly Cloudy",
         }}
         tempIsCelsius={false}
+        fetchDataError={""}
       />
     );
 
@@ -39,6 +41,7 @@ describe("<DayForecast />", () => {
           condition: "Thunderstorms",
         }}
         tempIsCelsius={true}
+        fetchDataError={""}
       />
     );
 
@@ -59,6 +62,7 @@ describe("<DayForecast />", () => {
           condition: "Rain",
         }}
         tempIsCelsius={true}
+        fetchDataError={""}
       />
     );
 
@@ -79,6 +83,7 @@ describe("<DayForecast />", () => {
           condition: "Drizzle",
         }}
         tempIsCelsius={false}
+        fetchDataError={""}
       />
     );
 
@@ -87,5 +92,28 @@ describe("<DayForecast />", () => {
 
     expect(temp).toBeInTheDocument();
     expect(weatherIcon).toBeInTheDocument();
+  });
+
+  test("renders error message and fail icon if fetchDataError is not an empty string", () => {
+    render(
+      <DayForecast
+        forecast={{
+          temp: NaN,
+          icon: failIcon,
+          date: NaN,
+          condition: "Failed to load data",
+        }}
+        tempIsCelsius={false}
+        fetchDataError={"Failed to retrieve weather forecast data from API"}
+      />
+    );
+
+    const weatherIcon = screen.getByAltText(/failed to load data/i);
+    const errorMessage = screen.getByText(
+      /failed to retrieve weather forecast data from API/i
+    );
+
+    expect(weatherIcon).toBeInTheDocument();
+    expect(errorMessage).toBeInTheDocument();
   });
 });
