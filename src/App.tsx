@@ -86,28 +86,30 @@ function App() {
     <Container className="mainBackground" fluid>
       <Row className="d-flex flex-column flex-md-row align-content-center vh-100">
         <Col xs={10} md={8} className="mx-auto">
-          <SearchBar handleInputSubmit={handleInputSubmit} />
-          <LocationAndDate city={cityName} />
-          <CityContainer
-            tempIsCelsius={tempIsCelsius}
-            handleToggleTemp={handleToggleTemp}
-            cityName={cityName}
-          />
-          {status === "Loading" && <p>Loading Weekly Forecast</p>}
-          {status === "Error" && (
-            <WeekForecast
-              dailyForecasts={dailyForecasts}
+          <main>
+            <SearchBar handleInputSubmit={handleInputSubmit} />
+            <LocationAndDate city={cityName} />
+            <CityContainer
               tempIsCelsius={tempIsCelsius}
-              fetchDataError={error}
+              handleToggleTemp={handleToggleTemp}
+              cityName={cityName}
             />
-          )}
-          {status === "Successful" && (
-            <WeekForecast
-              dailyForecasts={dailyForecasts}
-              tempIsCelsius={tempIsCelsius}
-              fetchDataError={error}
-            />
-          )}
+            {status === "Loading" && <p>Loading Weekly Forecast</p>}
+            {status === "Error" && (
+              <WeekForecast
+                dailyForecasts={dailyForecasts}
+                tempIsCelsius={tempIsCelsius}
+                fetchDataError={error}
+              />
+            )}
+            {status === "Successful" && (
+              <WeekForecast
+                dailyForecasts={dailyForecasts}
+                tempIsCelsius={tempIsCelsius}
+                fetchDataError={error}
+              />
+            )}
+          </main>
         </Col>
       </Row>
     </Container>
