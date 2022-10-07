@@ -61,7 +61,10 @@ const CityContainer = (props: CityContainerProps): JSX.Element => {
           />
         )}
         <div className="tempTogglePosition">
-          <TempToggle handleToggleTemp={props.handleToggleTemp} />
+          <TempToggle
+            handleToggleTemp={props.handleToggleTemp}
+            tempIsCelsius={props.tempIsCelsius}
+          />
         </div>
       </div>
     </div>

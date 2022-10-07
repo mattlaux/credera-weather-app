@@ -15,7 +15,7 @@ describe("<App />", () => {
     const locationAndDate = await screen.findByText(/dallas/i);
     const currentWeather = await screen.findByText(/wind:/i);
     const tempToggle = await screen.findByRole("checkbox");
-    const weekForecast = await screen.findByText(/fri/i);
+    const weekForecast = await screen.findByText(/sun/i);
 
     expect(locationAndDate).toBeInTheDocument();
     expect(currentWeather).toBeInTheDocument();
