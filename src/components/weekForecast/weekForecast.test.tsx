@@ -30,6 +30,7 @@ describe("<WeekForecast />", () => {
           },
         ]}
         tempIsCelsius={false}
+        fetchDataError={""}
       />
     );
 
@@ -79,6 +80,7 @@ describe("<WeekForecast />", () => {
           },
         ]}
         tempIsCelsius={true}
+        fetchDataError={""}
       />
     );
 

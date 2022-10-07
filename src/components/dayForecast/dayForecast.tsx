@@ -11,6 +11,7 @@ type DailyForecast = {
 type DayForecastProps = {
   forecast: DailyForecast;
   tempIsCelsius: boolean;
+  fetchDataError: string;
 };
 
 const DayForecast = (props: DayForecastProps): JSX.Element => {
@@ -25,12 +26,16 @@ const DayForecast = (props: DayForecastProps): JSX.Element => {
         alt={props.forecast.condition}
         className="mb-md-2"
       />
-      <p>
-        {props.tempIsCelsius
-          ? fahrenheitToCelsius(props.forecast.temp)
-          : props.forecast.temp}
-        °
-      </p>
+      {props.fetchDataError === "" ? (
+        <p>
+          {props.tempIsCelsius
+            ? fahrenheitToCelsius(props.forecast.temp)
+            : props.forecast.temp}
+          °
+        </p>
+      ) : (
+        <p>{props.fetchDataError}</p>
+      )}
     </section>
   );
 };
