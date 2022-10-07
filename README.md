@@ -2,7 +2,7 @@
 
 This project consists of a simple React app deployed to Netlify. It displays the current weather data and 5-day forecast data for Dallas at initial load. Users can then input different cities to fetch that city's current weather and 5-day-forecast.
 
-The live application can be seen [here](https://633fa0ed924b8164735b871a--majestic-monstera-1c192b.netlify.app/).
+The live application can be seen [here](https://main--majestic-monstera-1c192b.netlify.app/).
 
 The web application is fully responsive through the use of Bootstrap's grid system and CSS media queries. Testing was conducted with Jest and React Testing Library.
 
@@ -107,7 +107,7 @@ domPurify and validator were used to ensure safe and correct user input is passe
 
 ### Deploy web application
 
-This web application is deployed to Netlify [here](https://633fa0ed924b8164735b871a--majestic-monstera-1c192b.netlify.app/).
+This web application is deployed to Netlify [here](https://main--majestic-monstera-1c192b.netlify.app/).
 
 ### Test web application
 
