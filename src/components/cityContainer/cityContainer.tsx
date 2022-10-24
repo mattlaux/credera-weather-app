@@ -24,7 +24,7 @@ const CityContainer = (props: CityContainerProps): JSX.Element => {
     const fetchCurrentWeather = async () => {
       try {
         const res = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${props.cityName}&appid=60a23522e4542e1b670c3d203b56d9ae&units=imperial`
+          `https://api.openweathermap.org/data/2.5/weather?q=${props.cityName}&appid=${process.env.REACT_APP_API_KEY}&units=imperial`
         );
         if (!res.ok) {
           throw new Error("Failed to retrieve current weather data from API");
